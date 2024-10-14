@@ -41,6 +41,13 @@ jobs:
         name: .net-app
         path: ${{env.DOTNET_ROOT}}/app.zip
 
+    #Download the publish files created in previous job
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v4
+      with:
+        name: .net-app
+        path: .net-app
+
     #Login in your azure subscription using OpenID Connect (credentials stored as GitHub secrets in repo)
     - name: Azure Login
       uses: azure/login@v2
