@@ -1,12 +1,10 @@
-# First test
-
-name: publish
+name: Build and publish
 
 on: [workflow_dispatch]
 
 env:
-  AZURE_WEBAPP_NAME: DotNetWeb
-
+  AZURE_WEBAPP_NAME: az22006app28976
+  RESOURCE_GROUP: az2006-rg
 
 jobs:
   build:
@@ -14,11 +12,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    # Setup .net
     - uses: actions/checkout@v4
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: '8.0.x'
+
     #Build/publish the .net project
     - name: Install dependencies
       run: dotnet restore
@@ -29,9 +29,25 @@ jobs:
         dotnet publish ./az2006webapp.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
         cd ${{env.DOTNET_ROOT}}/myapp
         zip -r ../app.zip .
+    
     # upload the published website code artifacts
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
       with:
         name: .net-app
         path: ${{env.DOTNET_ROOT}}/app.zip
+
+    #Login in your azure subscription using OpenID Connect (credentials stored as GitHub secrets in repo)
+    - name: Azure Login
+      uses: azure/login@v2
+      with:
+       client-id: ${{ secrets.AZURE_CLIENT_ID }}
+       tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+       subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    # Publish website to Azure App Service using CLI (WebApp)
+    - name: Publish Website to WebApp
+      uses: Azure/cli@v2
+      with:
+        inlineScript: |
+            az webapp deploy --name ${{ env.AZURE_WEBAPP_NAME }} --resource-group ${{ env.RESOURCE_GROUP }} --src-path .net-app/app.zip --type zip
