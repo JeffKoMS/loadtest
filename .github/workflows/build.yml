@@ -2,6 +2,9 @@ name: Build and publish
 
 on: [workflow_dispatch]
 
+permissions:
+  id-token: write # Require write permission to Fetch an OIDC token.
+
 env:
   AZURE_WEBAPP_NAME: az22006app28976
   RESOURCE_GROUP: az2006-rg
