@@ -1,1 +1,37 @@
 # First test
+
+name: publish
+
+on: [workflow_dispatch]
+
+env:
+  AZURE_WEBAPP_NAME: DotNetWeb
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'
+    #Build/publish the .net project
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build ./az2006webapp.sln --configuration Release
+    - name: Publish
+      run: |
+        dotnet publish ./az2006webapp.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
+        cd ${{env.DOTNET_ROOT}}/myapp
+        zip -r ../app.zip .
+    # upload the published website code artifacts
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v4
+      with:
+        name: .net-app
+        path: ${{env.DOTNET_ROOT}}/app.zip
