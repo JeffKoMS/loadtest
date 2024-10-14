@@ -4,9 +4,10 @@ on: [workflow_dispatch]
 
 permissions:
   id-token: write # Require write permission to Fetch an OIDC token.
+  contents: read  # This is required for actions/checkout
 
 env:
-  AZURE_WEBAPP_NAME: az22006app28976
+  AZURE_WEBAPP_NAME: az2006app28976
   RESOURCE_GROUP: az2006-rg
 
 jobs:
