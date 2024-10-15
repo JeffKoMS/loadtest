@@ -1,0 +1,24 @@
+displayName: myLoadTest
+testPlan: quick_test.jmx
+description: ''
+engineInstances: 3
+testId: 6a52291d-d08b-4f6a-8af5-5b9c323e3013
+testType: JMX
+splitAllCSVs: False
+failureCriteria: []
+env:
+- name: domain
+  value: az2006app28976.azurewebsites.net
+- name: protocol
+  value: https
+- name: throughput_per_engine
+  value: 333
+- name: max_response_time
+  value: 500
+- name: ramp_up_time
+  value: 60
+- name: duration_in_sec
+  value: 120
+autoStop:
+  errorPercentage: 90
+  timeWindow: 60

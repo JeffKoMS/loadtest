@@ -1,0 +1,13 @@
+displayName: az2006test22
+testPlan: url-test.json
+description: ''
+engineInstances: 1
+testId: 6a52291d-d08b-4f6a-8af5-5b9c323e3032
+testType: URL
+splitAllCSVs: False
+failureCriteria:
+- avg(response_time_ms) < 5000
+- percentage(error) > 20
+autoStop:
+  errorPercentage: 90
+  timeWindow: 60
