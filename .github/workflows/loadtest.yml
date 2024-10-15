@@ -7,7 +7,6 @@ permissions:
   contents: read  # This is required for actions/checkout
 
 env:
-  AZURE_WEBAPP_NAME: az2006app28976
   RESOURCE_GROUP: az2006-rg
   LOAD_TEST_RESOURCE: myLoadTest
 
@@ -15,8 +14,9 @@ jobs:
   # This workflow consists of a single job called "loadtest"
 
   loadtest:
-    name: Load Test
+
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Github Actions
       - uses: actions/checkout@v4
