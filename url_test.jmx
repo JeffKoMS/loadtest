@@ -19,13 +19,13 @@
             <stringProp name="threadsnum">50</stringProp>
             <stringProp name="initdelay">0</stringProp>
             <stringProp name="startime">60</stringProp>
-            <stringProp name="holdload">1140</stringProp>
+            <stringProp name="holdload">60</stringProp>
             <stringProp name="shutdown"></stringProp>
           </collectionProp>
         </collectionProp>
       </kg.apc.jmeter.threads.UltimateThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testname="get web site">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testname="Get web site">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>

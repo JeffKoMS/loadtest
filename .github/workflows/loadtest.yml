@@ -9,6 +9,7 @@ permissions:
 env:
   AZURE_WEBAPP_NAME: az2006app28976
   RESOURCE_GROUP: az2006-rg
+  LOAD_TEST_RESOURCE: myLoadTest
 
 jobs:
   # This workflow consists of a single job called "loadtest"
@@ -32,6 +33,13 @@ jobs:
       - name: 'Azure Load Testing'
         uses: azure/load-testing@v1
         with:
-          loadTestConfigFile: 'SampleApp.yaml'
-          loadTestResource: 'loadTestResourceName'
-          resourceGroup: 'loadTestResourceGroup'
+          loadTestConfigFile: 'config.yaml'
+          loadTestResource: ${{ env.LOAD_TEST_RESOURCE}}
+          resourceGroup: ${{ env.RESOURCE_GROUP }}
+
+      # upload the published website code artifacts
+      - name: Upload artifact for deployment job
+        uses: actions/upload-artifact@v4
+        with:
+          name: loadTestResults
+          path: ${{github.workspace}}/loadTest
