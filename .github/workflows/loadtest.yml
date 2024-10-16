@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v4
 
       #Login in your azure subscription using OpenID Connect (credentials stored as GitHub secrets in repo)
       - name: Azure Login
@@ -26,7 +27,7 @@ jobs:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  
+
       # Run the load test
       - name: Azure Load Testing
         uses: azure/load-testing@v1
