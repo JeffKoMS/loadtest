@@ -7,8 +7,9 @@ permissions:
   contents: read  # This is required for actions/checkout
 
 env:
-  RESOURCE_GROUP: "az2006-rg"
-  LOAD_TEST_RESOURCE: "az2006loadtest"
+  RESOURCE_GROUP: az2006-rg
+  LOAD_TEST_RESOURCE: az2006loadtest
+  AZURE_WEBAPP_NAME: az2006app28976
 
 jobs:
   # This workflow consists of a single job called "loadtest"
@@ -35,6 +36,13 @@ jobs:
           loadTestConfigFile: 'config.yaml'
           loadTestResource: ${{ env.LOAD_TEST_RESOURCE}}
           resourceGroup: ${{ env.RESOURCE_GROUP }}
+          env: |
+            [
+              {
+              "name": "webapp",
+              "value": "${{ env.AZURE_WEBAPP_NAME }}.azurewebsites.net"
+              }
+            ]
 
       # upload the published website code artifacts
       - name: Upload artifact for deployment job
