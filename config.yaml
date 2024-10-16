@@ -1,9 +1,9 @@
 displayName: URLTest
-testPlan: url-test.json
+testPlan: url_test.jmx
 description: ''
 engineInstances: 2
 testId: 4c23188e-6525-4690-95b4-5b646f183028
-testType: URL
+testType: JMX
 splitAllCSVs: False
 failureCriteria:
 - avg(response_time_ms) > 3000
