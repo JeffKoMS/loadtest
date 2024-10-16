@@ -7,8 +7,8 @@ permissions:
   contents: read  # This is required for actions/checkout
 
 env:
-  RESOURCE_GROUP: az2006-rg
-  LOAD_TEST_RESOURCE: myLoadTest
+  RESOURCE_GROUP: "az2006-rg"
+  LOAD_TEST_RESOURCE: "myLoadTest"
 
 jobs:
   # This workflow consists of a single job called "loadtest"
