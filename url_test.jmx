@@ -25,7 +25,7 @@
         </collectionProp>
       </kg.apc.jmeter.threads.UltimateThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testname="Get web site">
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testname="Load web site">
           <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
             <collectionProp name="Arguments.arguments"/>
           </elementProp>

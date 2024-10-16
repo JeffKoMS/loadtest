@@ -1,13 +1,13 @@
-displayName: myLoadTest
-testPlan: url_test.jmx
+displayName: URLTest
+testPlan: url-test.json
 description: ''
-engineInstances: 3
-testId: 6a52291d-d08b-4f6a-8af5-5b9c323e3013
-testType: JMX
+engineInstances: 2
+testId: 4c23188e-6525-4690-95b4-5b646f183028
+testType: URL
 splitAllCSVs: False
 failureCriteria:
-- avg(response_time_ms) > 5000
-- percentage(error) > 25
+- avg(response_time_ms) > 3000
+- percentage(error) > 10
 autoStop:
   errorPercentage: 90
   timeWindow: 60
