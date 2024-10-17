@@ -9,7 +9,8 @@ permissions:
 env:
   RESOURCE_GROUP: az2006-rg
   LOAD_TEST_RESOURCE: az2006loadtest
-  AZURE_WEBAPP_NAME: az2006app28976
+  AZURE_WEBAPP_NAME: <your web app name>
+  # Just the name, not the full URL for AZURE_WEBAPP_NAME
 
 jobs:
   # This workflow consists of a single job called "loadtest"
