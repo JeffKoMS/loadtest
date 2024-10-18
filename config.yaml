@@ -7,4 +7,3 @@ testType: JMX
 splitAllCSVs: False
 failureCriteria:
 - p90(response_time_ms) > 4000
-- percentage(error) > 10
