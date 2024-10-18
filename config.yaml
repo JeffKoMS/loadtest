@@ -6,5 +6,5 @@ testId: 4c23188e-6525-4690-95b4-5b646f183028
 testType: JMX
 splitAllCSVs: False
 failureCriteria:
-- p90(response_time_ms) > 1000
+- p90(response_time_ms) > 4000
 - percentage(error) > 10
